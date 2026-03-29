@@ -10,7 +10,7 @@ router.post("/Logout", logout);
 
 router.post("/onboarding",protectRoute,onboard);
 
-//future--->>
+//futures--->>
 //forget-password
 //send-reset password emails
 
