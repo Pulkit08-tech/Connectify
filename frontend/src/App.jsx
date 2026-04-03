@@ -31,12 +31,31 @@ const App = () => {
   ) : (
     <Navigate to={!isAuthenticated ? "/Login" : "/onboarding"} />
   )} />
-  <Route path="/signup" element={!isAuthenticated ? <SignUpPage /> : <Navigate to="/"/>} />
-  <Route path="/login" element={!isAuthenticated ?<LoginPage /> : <Navigate to="/"/>} />
-  <Route path="/notifications" element={isAuthenticated ? <NotificationsPage /> : <Navigate to ="/login"/>} />
+  <Route path="/signup" element={
+    !isAuthenticated ? <SignUpPage /> : <Navigate to={isOnboarded ? "/" : "/onboarding" }/>
+    }
+   />
+  <Route path="/login" element={
+    !isAuthenticated ?<LoginPage /> : <Navigate to={isOnboarded ? "/" : "/onboarding" }/>
+    } 
+  />
+  <Route 
+  path="/notifications" 
+  element={isAuthenticated ? <NotificationsPage /> : <Navigate to ="/login"/>} />
   <Route path="/call" element={isAuthenticated ?<CallPage /> : <Navigate to ="/login"/>} />
   <Route path="/chat" element={isAuthenticated ?<ChatPage /> : <Navigate to ="/login"/>} />
-  <Route path="/onboarding" element={isAuthenticated ?<OnboardingPage /> : <Navigate to ="/login"/>} />
+  <Route
+   path="/onboarding" 
+   element={isAuthenticated ? (
+    !isOnboarded ? (
+      <OnboardingPage/>
+    ) : (
+      <Navigate to="/"/>
+    )
+   ) : (
+    <Navigate to="/login"/>
+   )}
+  />
 </Routes>
 
 <Toaster />
