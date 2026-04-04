@@ -13,10 +13,14 @@ import { Toaster} from "react-hot-toast";
 import PageLoader from "./components/PageLoader.jsx";
 import useAuthUser from "./hooks/useAuthUser.js";
 
+import Layout from "./components/Layout.jsx";
+
 const App = () => {
   // react query tanstack query crash course
 
   const {isLoading,authUser} =useAuthUser();
+
+  const[data,setData] = useState()
 
   const isAuthenticated= Boolean(authUser);
   const isOnboarded = authUser?.isOnboarded;
@@ -27,7 +31,9 @@ const App = () => {
   <div className="h-screen" data-theme="night">
 <Routes>
   <Route path="/" element={isAuthenticated && isOnboarded ? (
-    <HomePage/>
+    <Layout showSidebar={true}>
+      <HomePage/>
+    </Layout>
   ) : (
     <Navigate to={!isAuthenticated ? "/Login" : "/onboarding"} />
   )} />
