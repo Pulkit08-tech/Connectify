@@ -30,6 +30,7 @@ const HomePage = () => {
     mutationFn:sendFriendRequest,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["outgoingFriendReqs"]}),
   })
+  
 
   useEffect(() => {
     const outgoingIds=new Set()
